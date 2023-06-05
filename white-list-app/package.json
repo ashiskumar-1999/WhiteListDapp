@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "bufferutil": "^4.0.7",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "ethers": "5",
@@ -19,6 +20,7 @@
     "next": "13.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "utf-8-validate": "^6.0.3",
     "web3modal": "^1.9.12"
   }
 }
