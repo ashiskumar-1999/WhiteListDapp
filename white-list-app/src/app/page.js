@@ -4,7 +4,15 @@ import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import { useEffect, useRef, useState } from "react";
 import { WHITELIST_CONTRACT_ADDRESS, abi } from "../../constants";
-import { Box, Button, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  HStack,
+  Heading,
+  Image,
+  Text,
+  ChakraProvider,
+} from "@chakra-ui/react";
 
 const Home = () => {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -15,21 +23,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   // numberOfWhitelisted tracks the number of addresses's whitelisted
   const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
-  // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef();
 
-  /**
-   * Returns a Provider or Signer object representing the Ethereum RPC with or without the
-   * signing capabilities of metamask attached
-   *
-   * A `Provider` is needed to interact with the blockchain - reading transactions, reading balances, reading state, etc.
-   *
-   * A `Signer` is a special type of Provider used in case a `write` transaction needs to be made to the blockchain, which involves the connected account
-   * needing to make a digital signature to authorize the transaction being sent. Metamask exposes a Signer API to allow your website to
-   * request signatures from the user using Signer functions.
-   *
-   * @param {*} needSigner - True if you need the signer, default false otherwise
-   */
+  /*  */
   const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
     // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
@@ -145,19 +141,29 @@ const Home = () => {
     }
   };
 
-  const renderButton = () => {
+  const WalletConnectButton = () => {
     if (walletConnected) {
       if (joinedWhitelist) {
-        return <Text>Thanks for joining the Whitelist!</Text>;
+        return (
+          <Text fontSize="xl" fontWeight="semibold">
+            Thanks for joining the Whitelist! 🎊
+          </Text>
+        );
       } else if (loading) {
-        return <Button>Loading...</Button>;
+        return <Button bg="#24c7c7">Loading...</Button>;
       } else {
         return (
-          <Button onClick={addAddressToWhitelist}>Join the Whitelist</Button>
+          <Button bg="#24c7c7" onClick={addAddressToWhitelist}>
+            Join the Whitelist
+          </Button>
         );
       }
     } else {
-      return <Button onClick={connectWallet}>Connect your wallet</Button>;
+      return (
+        <Button bg="#24c7c7" onClick={connectWallet}>
+          Connect your wallet
+        </Button>
+      );
     }
   };
 
@@ -174,29 +180,41 @@ const Home = () => {
   }, [walletConnected]);
 
   return (
-    <Box>
-      <Head>
-        <title>Whitelist Dapp</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <HStack>
-        <Box>
-          <Heading>Welcome to Crypto Devs!</Heading>
-          <Text>
-            {/* Using HTML Entities for the apostrophe */}
-            It&#39;s an NFT collection for developers in Crypto.
-          </Text>
-          <Text>{numberOfWhitelisted} have already joined the Whitelist</Text>
-          {renderButton()}
-        </Box>
-        <Box>
-          <Image src="./crypto-devs.svg" />
-        </Box>
-      </HStack>
+    <ChakraProvider>
+      <Box bgGradient="linear(to-b, #e7ffff, #ffffff)">
+        <Head>
+          <title>Whitelist Dapp</title>
+          <meta name="description" content="Whitelist-Dapp" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <HStack
+          justifyContent="space-between"
+          alignItems="center"
+          mx="100px"
+          py="80px"
+        >
+          <Box>
+            <Heading size="3xl" py="10px">
+              Welcome to Crypto Devs!
+            </Heading>
+            <Text py="10px" fontSize="lg">
+              It's an NFT collection for developers in Crypto.
+            </Text>
+            <Text py="10px" fontSize="lg">
+              {numberOfWhitelisted} have already joined the Whitelist
+            </Text>
+            {WalletConnectButton()}
+          </Box>
+          <Box w="50%">
+            <Image src="./crypto-devs.svg" />
+          </Box>
+        </HStack>
 
-      <footer>Made with &#10084; by Crypto Devs</footer>
-    </Box>
+        <Text textAlign="center" fontSize="lg">
+          Made with &#10084; by Next.js & Chakra-UI
+        </Text>
+      </Box>
+    </ChakraProvider>
   );
 };
 export default Home;
