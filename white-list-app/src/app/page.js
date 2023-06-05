@@ -177,7 +177,7 @@ const Home = () => {
       });
       connectWallet();
     }
-  }, [walletConnected]);
+  }, []);
 
   return (
     <ChakraProvider>
@@ -211,7 +211,7 @@ const Home = () => {
         </HStack>
 
         <Text textAlign="center" fontSize="lg">
-          Made with &#10084; by Next.js & Chakra-UI
+          Made with ❤️ by Next.js & Chakra-UI
         </Text>
       </Box>
     </ChakraProvider>
