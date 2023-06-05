@@ -25,7 +25,9 @@ const Home = () => {
   const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
   const web3ModalRef = useRef();
 
-  /*  */
+  /** 
+     @param {*} needSigner - True if you need the signer, default false otherwise
+   */
   const getProviderOrSigner = async (needSigner = false) => {
     // Connect to Metamask
     // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
