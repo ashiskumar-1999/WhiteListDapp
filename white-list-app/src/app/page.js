@@ -155,7 +155,7 @@ const Home = () => {
         return <Button bg="#24c7c7">Loading...</Button>;
       } else {
         return (
-          <Button bg="#24c7c7" onClick={addAddressToWhitelist}>
+          <Button bg="#24c7c7" color="#ffffff" onClick={addAddressToWhitelist}>
             Join the Whitelist
           </Button>
         );
