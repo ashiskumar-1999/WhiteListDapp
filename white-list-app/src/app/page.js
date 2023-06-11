@@ -152,7 +152,7 @@ const Home = () => {
           </Text>
         );
       } else if (loading) {
-        return <Button bg="#24c7c7">Loading...</Button>;
+        return <Button bg="#24c7c7" color="#ffffff">Loading...</Button>;
       } else {
         return (
           <Button bg="#24c7c7" color="#ffffff" onClick={addAddressToWhitelist}>
@@ -162,7 +162,7 @@ const Home = () => {
       }
     } else {
       return (
-        <Button bg="#24c7c7" onClick={connectWallet}>
+        <Button bg="#24c7c7" color="#ffffff" onClick={connectWallet}>
           Connect your wallet
         </Button>
       );
